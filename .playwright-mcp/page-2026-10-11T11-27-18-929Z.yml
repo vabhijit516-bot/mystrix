@@ -1,0 +1,111 @@
+- generic [ref=e3]:
+  - button "AUDIO ON" [ref=e4] [cursor=pointer]
+  - banner [ref=e10]:
+    - heading "MYSTRIX" [level=1] [ref=e14]
+    - generic [ref=e17]:
+      - text: "TEAM:"
+      - strong [ref=e18]: erroris
+      - generic "Change Team / Sign Out" [ref=e19] [cursor=pointer]: CHANGE TEAM
+    - generic [ref=e23]:
+      - heading "ENCRYPTED ROOMS + CLUE HUNT" [level=2] [ref=e24]
+      - paragraph [ref=e25]: "> 9 mysterious chambers await your team"
+      - paragraph [ref=e26]: "> Enter the correct key to unlock the chamber"
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]: MISSION PROGRESS
+        - generic [ref=e32]: 1/9
+      - progressbar "Mission progress" [ref=e33]
+      - generic [ref=e34]: 11% COMPLETE
+  - main "Challenge rooms" [ref=e35]:
+    - 'button "Room 1: The Mirror Gate" [ref=e36] [cursor=pointer]':
+      - generic [ref=e40]:
+        - generic [ref=e41]: ACCESS GRANTED
+        - generic [ref=e42]: The Mirror Gate
+        - generic [ref=e43]: ROOM 01
+    - 'button "Room 2: The Vector Vortex" [ref=e44] [cursor=pointer]':
+      - generic [ref=e48]:
+        - generic [ref=e49]: LOCKED
+        - generic [ref=e50]: The Vector Vortex
+        - generic [ref=e51]: ROOM 02
+    - 'button "Room 3: The Caesar Circuit" [ref=e52] [cursor=pointer]':
+      - generic [ref=e56]:
+        - generic [ref=e57]: LOCKED
+        - generic [ref=e58]: The Caesar Circuit
+        - generic [ref=e59]: ROOM 03
+    - 'button "Room 4: The Glitch Lab" [ref=e60] [cursor=pointer]':
+      - generic [ref=e64]:
+        - generic [ref=e65]: LOCKED
+        - generic [ref=e66]: The Glitch Lab
+        - generic [ref=e67]: ROOM 04
+    - 'button "Room 5: The Reflection Vault" [ref=e68] [cursor=pointer]':
+      - generic [ref=e72]:
+        - generic [ref=e73]: LOCKED
+        - generic [ref=e74]: The Reflection Vault
+        - generic [ref=e75]: ROOM 05
+    - 'button "Room 6: The Binary Carousel" [ref=e76] [cursor=pointer]':
+      - generic [ref=e80]:
+        - generic [ref=e81]: LOCKED
+        - generic [ref=e82]: The Binary Carousel
+        - generic [ref=e83]: ROOM 06
+    - 'button "Room 7: The Kernel Switch" [ref=e84] [cursor=pointer]':
+      - generic [ref=e88]:
+        - generic [ref=e89]: LOCKED
+        - generic [ref=e90]: The Kernel Switch
+        - generic [ref=e91]: ROOM 07
+    - 'button "Room 8: The Proxy Portal" [ref=e92] [cursor=pointer]':
+      - generic [ref=e96]:
+        - generic [ref=e97]: LOCKED
+        - generic [ref=e98]: The Proxy Portal
+        - generic [ref=e99]: ROOM 08
+    - 'button "Room 9: The Quantum Mirage" [ref=e100] [cursor=pointer]':
+      - generic [ref=e104]:
+        - generic [ref=e105]: LOCKED
+        - generic [ref=e106]: The Quantum Mirage
+        - generic [ref=e107]: ROOM 09
+  - button "VIEW ALL TEAM PROGRESS" [ref=e109] [cursor=pointer]
+  - generic [ref=e112]:
+    - generic [ref=e113]:
+      - heading "SHARED LEADERBOARD" [level=2] [ref=e114]
+      - generic [ref=e121]: 5 TEAMS
+    - table [ref=e123]:
+      - rowgroup [ref=e124]:
+        - row [ref=e125]:
+          - columnheader "RANK" [ref=e126]
+          - columnheader "TEAM" [ref=e127]
+          - columnheader "PROGRESS" [ref=e128]
+      - rowgroup [ref=e129]:
+        - row [ref=e130]:
+          - cell "01" [ref=e131]
+          - cell [ref=e132]:
+            - strong [ref=e133]: erroris
+          - cell [ref=e134]:
+            - text: 9/9
+            - progressbar "erroris progress" [ref=e135]
+        - row [ref=e136]:
+          - cell "02" [ref=e137]
+          - cell [ref=e138]:
+            - strong [ref=e139]: Session repair check 20261011
+          - cell [ref=e140]:
+            - text: 4/9
+            - progressbar "Session repair check 20261011 progress" [ref=e141]
+        - row [ref=e142]:
+          - cell "03" [ref=e143]
+          - cell [ref=e144]:
+            - strong [ref=e145]: Embedded repair check 20261011
+          - cell [ref=e146]:
+            - text: 2/9
+            - progressbar "Embedded repair check 20261011 progress" [ref=e147]
+        - row [ref=e148]:
+          - cell "04" [ref=e149]
+          - cell [ref=e150]:
+            - strong [ref=e151]: CipherSquad_Alpha
+          - cell [ref=e152]:
+            - text: 1/9
+            - progressbar "CipherSquad_Alpha progress" [ref=e153]
+        - row [ref=e154]:
+          - cell "05" [ref=e155]
+          - cell [ref=e156]:
+            - strong [ref=e157]: erroris
+          - cell [ref=e158]:
+            - text: 1/9
+            - progressbar "erroris progress" [ref=e159]

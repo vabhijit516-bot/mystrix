@@ -1,0 +1,145 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - banner [ref=f1e4]:
+        - heading "MYSTRIX" [level=1] [ref=f1e8]
+        - generic [ref=f1e153]:
+          - text: "TEAM:"
+          - strong [ref=f1e154]: CodeBreakers99T
+        - generic [ref=f1e14]:
+          - heading "ENCRYPTED ROOMS + CLUE HUNT" [level=2] [ref=f1e15]
+          - paragraph [ref=f1e16]: "> 9 mysterious chambers await your team"
+          - paragraph [ref=f1e17]: "> Enter the correct key to unlock the chamber"
+        - generic [ref=f1e18]:
+          - generic [ref=f1e19]:
+            - generic [ref=f1e20]: MISSION PROGRESS
+            - generic [ref=f1e23]: 2/9
+          - progressbar "Mission progress" [ref=f1e24]
+          - generic [ref=f1e25]: 22% COMPLETE
+      - main "Challenge rooms" [ref=f1e26]:
+        - button "ACCESS GRANTED The Mirror Gate ROOM 01" [ref=f1e187] [cursor=pointer]:
+          - generic [ref=f1e28]:
+            - generic [ref=f1e29]: ACCESS GRANTED
+            - generic [ref=f1e30]: The Mirror Gate
+            - generic [ref=f1e31]: ROOM 01
+        - button "ACCESS GRANTED The Vector Vortex ROOM 02" [ref=f1e222] [cursor=pointer]:
+          - generic [ref=f1e33]:
+            - generic [ref=f1e34]: ACCESS GRANTED
+            - generic [ref=f1e35]: The Vector Vortex
+            - generic [ref=f1e36]: ROOM 02
+        - button "LOCKED The Caesar Circuit ROOM 03" [ref=f1e37] [cursor=pointer]:
+          - generic [ref=f1e38]:
+            - generic [ref=f1e39]: LOCKED
+            - generic [ref=f1e40]: The Caesar Circuit
+            - generic [ref=f1e41]: ROOM 03
+        - button "LOCKED The Glitch Lab ROOM 04" [ref=f1e42] [cursor=pointer]:
+          - generic [ref=f1e43]:
+            - generic [ref=f1e44]: LOCKED
+            - generic [ref=f1e45]: The Glitch Lab
+            - generic [ref=f1e46]: ROOM 04
+        - button "LOCKED The Reflection Vault ROOM 05" [ref=f1e47] [cursor=pointer]:
+          - generic [ref=f1e48]:
+            - generic [ref=f1e49]: LOCKED
+            - generic [ref=f1e50]: The Reflection Vault
+            - generic [ref=f1e51]: ROOM 05
+        - button "LOCKED The Binary Carousel ROOM 06" [ref=f1e52] [cursor=pointer]:
+          - generic [ref=f1e53]:
+            - generic [ref=f1e54]: LOCKED
+            - generic [ref=f1e55]: The Binary Carousel
+            - generic [ref=f1e56]: ROOM 06
+        - button "LOCKED The Kernel Switch ROOM 07" [ref=f1e57] [cursor=pointer]:
+          - generic [ref=f1e58]:
+            - generic [ref=f1e59]: LOCKED
+            - generic [ref=f1e60]: The Kernel Switch
+            - generic [ref=f1e61]: ROOM 07
+        - button "LOCKED The Proxy Portal ROOM 08" [ref=f1e62] [cursor=pointer]:
+          - generic [ref=f1e63]:
+            - generic [ref=f1e64]: LOCKED
+            - generic [ref=f1e65]: The Proxy Portal
+            - generic [ref=f1e66]: ROOM 08
+        - button "LOCKED The Quantum Mirage ROOM 09" [ref=f1e67] [cursor=pointer]:
+          - generic [ref=f1e68]:
+            - generic [ref=f1e69]: LOCKED
+            - generic [ref=f1e70]: The Quantum Mirage
+            - generic [ref=f1e71]: ROOM 09
+      - link "VIEW ALL TEAM PROGRESS" [ref=f1e73] [cursor=pointer]:
+        - /url: /leaderboard
+      - generic [ref=f1e74]:
+        - generic [ref=f1e75]:
+          - heading "SHARED LEADERBOARD" [level=2] [ref=f1e76]
+          - generic [ref=f1e83]: 5 TEAMS
+        - table [ref=f1e85]:
+          - rowgroup [ref=f1e86]:
+            - row [ref=f1e87]:
+              - columnheader "RANK" [ref=f1e88]
+              - columnheader "TEAM" [ref=f1e89]
+              - columnheader "PROGRESS" [ref=f1e90]
+          - rowgroup [ref=f1e91]:
+            - row [ref=f1e92]:
+              - cell "01" [ref=f1e93]
+              - cell [ref=f1e94]:
+                - strong [ref=f1e95]: erroris
+              - cell "9/9 9" [ref=f1e96]:
+                - generic [ref=f1e97]: 9/9
+                - progressbar "erroris progress" [ref=f1e98]
+            - row [ref=f1e99]:
+              - cell "02" [ref=f1e100]
+              - cell [ref=f1e101]:
+                - strong [ref=f1e102]: Session repair check 20261011
+              - cell "1/9 1" [ref=f1e103]:
+                - generic [ref=f1e104]: 1/9
+                - progressbar "Session repair check 20261011 progress" [ref=f1e105]
+            - row [ref=f1e106]:
+              - cell "03" [ref=f1e107]
+              - cell [ref=f1e108]:
+                - strong [ref=f1e109]: Embedded repair check 20261011
+              - cell "1/9 1" [ref=f1e110]:
+                - generic [ref=f1e111]: 1/9
+                - progressbar "Embedded repair check 20261011 progress" [ref=f1e112]
+            - row [ref=f1e192]:
+              - cell "04" [ref=f1e193]
+              - cell [ref=f1e157]:
+                - strong [ref=f1e158]: CodeBreakers99T
+              - cell "1/9 1" [ref=f1e194]:
+                - generic [ref=f1e160]: 1/9
+                - progressbar "CodeBreakers99T progress" [ref=f1e161]
+            - row [ref=f1e195]:
+              - cell "05" [ref=f1e196]
+              - cell [ref=f1e115]:
+                - strong [ref=f1e116]: erroris
+              - cell "0/9 0" [ref=f1e117]:
+                - generic [ref=f1e118]: 0/9
+                - progressbar "erroris progress" [ref=f1e119]
+    - dialog [ref=f1e198]:
+      - button "Close checkpoint" [ref=f1e199] [cursor=pointer]
+      - heading "THE VECTOR VORTEX" [level=2] [ref=f1e200]
+      - generic [ref=f1e203]:
+        - paragraph [ref=f1e204]:
+          - text: "> TARGET:"
+          - generic [ref=f1e205]: ROOM 02
+        - paragraph [ref=f1e206]: "> STATUS: CHAMBER UNLOCKED"
+      - generic [ref=f1e207]:
+        - generic [ref=f1e208]: ENCRYPTED PASSWORD
+        - strong [ref=f1e209]: vtorce99
+      - generic [ref=f1e210]:
+        - heading "HINTS" [level=3] [ref=f1e211]
+        - paragraph [ref=f1e212]:
+          - generic [ref=f1e213]: "01"
+          - text: “I’m all mixed up.”
+        - paragraph [ref=f1e214]:
+          - generic [ref=f1e215]: "02"
+          - text: “Sort my letters to see the path.”
+      - generic [ref=f1e216]:
+        - generic [ref=f1e217]: "ENTER YOUR ANSWER:"
+        - textbox "ENTER YOUR ANSWER:" [disabled] [ref=f1e218]:
+          - /placeholder: Type your answer...
+          - text: vector99
+        - status [ref=f1e223]: ACCESS GRANTED — CHAMBER UNLOCKED
+        - generic [ref=f1e219]:
+          - button "CHECKING..." [disabled]
+          - button "CONTINUE" [disabled]
+  - complementary "Edit with Lovable" [ref=f1e141]:
+    - link "Edit with Lovable" [ref=f1e142] [cursor=pointer]:
+      - /url: https://lovable.dev/projects/lovp_121b99exp994m917nxcngr28py?utm_source=lovable-badge
+      - generic [ref=f1e143]: Edit with
+    - button "Dismiss" [ref=f1e150] [cursor=pointer]

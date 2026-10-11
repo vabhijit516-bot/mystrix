@@ -1,0 +1,118 @@
+- generic [ref=e2]:
+  - generic:
+    - button "AUDIO ON"
+    - banner:
+      - generic:
+        - heading "MYSTRIX" [level=1]
+      - generic:
+        - generic:
+          - heading "ENCRYPTED ROOMS + CLUE HUNT" [level=2]
+          - paragraph: "> 9 mysterious chambers await your team"
+          - paragraph: "> Enter the correct key to unlock the chamber"
+      - generic:
+        - generic:
+          - generic: MISSION PROGRESS
+          - generic: 0/9
+        - progressbar "Mission progress"
+        - generic: 0% COMPLETE
+    - main "Challenge rooms":
+      - 'button "Room 1: The Mirror Gate"':
+        - generic:
+          - generic: LOCKED
+          - generic: The Mirror Gate
+          - generic: ROOM 01
+      - 'button "Room 2: The Vector Vortex"':
+        - generic:
+          - generic: LOCKED
+          - generic: The Vector Vortex
+          - generic: ROOM 02
+      - 'button "Room 3: The Caesar Circuit"':
+        - generic:
+          - generic: LOCKED
+          - generic: The Caesar Circuit
+          - generic: ROOM 03
+      - 'button "Room 4: The Glitch Lab"':
+        - generic:
+          - generic: LOCKED
+          - generic: The Glitch Lab
+          - generic: ROOM 04
+      - 'button "Room 5: The Reflection Vault"':
+        - generic:
+          - generic: LOCKED
+          - generic: The Reflection Vault
+          - generic: ROOM 05
+      - 'button "Room 6: The Binary Carousel"':
+        - generic:
+          - generic: LOCKED
+          - generic: The Binary Carousel
+          - generic: ROOM 06
+      - 'button "Room 7: The Kernel Switch"':
+        - generic:
+          - generic: LOCKED
+          - generic: The Kernel Switch
+          - generic: ROOM 07
+      - 'button "Room 8: The Proxy Portal"':
+        - generic:
+          - generic: LOCKED
+          - generic: The Proxy Portal
+          - generic: ROOM 08
+      - 'button "Room 9: The Quantum Mirage"':
+        - generic:
+          - generic: LOCKED
+          - generic: The Quantum Mirage
+          - generic: ROOM 09
+    - generic:
+      - button "VIEW ALL TEAM PROGRESS"
+    - generic:
+      - generic:
+        - heading "SHARED LEADERBOARD" [level=2]
+        - generic: 4 TEAMS
+      - generic:
+        - table:
+          - rowgroup:
+            - row "RANK TEAM PROGRESS":
+              - columnheader "RANK"
+              - columnheader "TEAM"
+              - columnheader "PROGRESS"
+          - rowgroup:
+            - row "01 erroris 9/9 9":
+              - cell "01"
+              - cell "erroris":
+                - strong: erroris
+              - cell "9/9 9":
+                - text: 9/9
+                - progressbar "erroris progress"
+            - row "02 Session repair check 20261011 4/9 4":
+              - cell "02"
+              - cell "Session repair check 20261011":
+                - strong: Session repair check 20261011
+              - cell "4/9 4":
+                - text: 4/9
+                - progressbar "Session repair check 20261011 progress"
+            - row "03 Embedded repair check 20261011 2/9 2":
+              - cell "03"
+              - cell "Embedded repair check 20261011":
+                - strong: Embedded repair check 20261011
+              - cell "2/9 2":
+                - text: 2/9
+                - progressbar "Embedded repair check 20261011 progress"
+            - row "04 CipherSquad_Alpha 1/9 1":
+              - cell "04"
+              - cell "CipherSquad_Alpha":
+                - strong: CipherSquad_Alpha
+              - cell "1/9 1":
+                - text: 1/9
+                - progressbar "CipherSquad_Alpha progress"
+  - dialog [ref=e4]:
+    - heading "TEAM REGISTRATION" [level=2] [ref=e11]
+    - generic [ref=e15]:
+      - paragraph [ref=e16]: "> Welcome to Mystrix"
+      - paragraph [ref=e17]: "> Enter your team name to begin"
+      - paragraph [ref=e18]: "> Your progress will be tracked automatically"
+    - generic [ref=e19]:
+      - generic [ref=e20]: "> TEAM NAME"
+      - textbox "> TEAM NAME" [active] [ref=e21]:
+        - /placeholder: Enter your team name...
+      - generic [ref=e22]: 0/50 characters
+      - button "START CHALLENGE" [disabled] [ref=e23]
+    - generic [ref=e27]: Your progress appears on the shared leaderboard

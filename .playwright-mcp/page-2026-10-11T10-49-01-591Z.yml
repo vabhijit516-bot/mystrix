@@ -1,0 +1,120 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - heading "MYSTRIX" [level=1] [ref=e8]
+        - generic [ref=e14]:
+          - heading "ENCRYPTED ROOMS + CLUE HUNT" [level=2] [ref=e15]
+          - paragraph [ref=e16]: "> 9 mysterious chambers await your team"
+          - paragraph [ref=e17]: "> Enter the correct key to unlock the chamber"
+        - generic [ref=e18]:
+          - generic [ref=e19]:
+            - generic [ref=e20]: MISSION PROGRESS
+            - generic [ref=e23]: 0/9
+          - progressbar "Mission progress" [ref=e24]
+          - generic [ref=e25]: 0% COMPLETE
+      - main "Challenge rooms" [ref=e26]:
+        - button "LOCKED The Mirror Gate ROOM 01" [ref=e27] [cursor=pointer]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: LOCKED
+            - generic [ref=e30]: The Mirror Gate
+            - generic [ref=e31]: ROOM 01
+        - button "LOCKED The Vector Vortex ROOM 02" [ref=e32] [cursor=pointer]:
+          - generic [ref=e33]:
+            - generic [ref=e34]: LOCKED
+            - generic [ref=e35]: The Vector Vortex
+            - generic [ref=e36]: ROOM 02
+        - button "LOCKED The Caesar Circuit ROOM 03" [ref=e37] [cursor=pointer]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: LOCKED
+            - generic [ref=e40]: The Caesar Circuit
+            - generic [ref=e41]: ROOM 03
+        - button "LOCKED The Glitch Lab ROOM 04" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]:
+            - generic [ref=e44]: LOCKED
+            - generic [ref=e45]: The Glitch Lab
+            - generic [ref=e46]: ROOM 04
+        - button "LOCKED The Reflection Vault ROOM 05" [ref=e47] [cursor=pointer]:
+          - generic [ref=e48]:
+            - generic [ref=e49]: LOCKED
+            - generic [ref=e50]: The Reflection Vault
+            - generic [ref=e51]: ROOM 05
+        - button "LOCKED The Binary Carousel ROOM 06" [ref=e52] [cursor=pointer]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: LOCKED
+            - generic [ref=e55]: The Binary Carousel
+            - generic [ref=e56]: ROOM 06
+        - button "LOCKED The Kernel Switch ROOM 07" [ref=e57] [cursor=pointer]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: LOCKED
+            - generic [ref=e60]: The Kernel Switch
+            - generic [ref=e61]: ROOM 07
+        - button "LOCKED The Proxy Portal ROOM 08" [ref=e62] [cursor=pointer]:
+          - generic [ref=e63]:
+            - generic [ref=e64]: LOCKED
+            - generic [ref=e65]: The Proxy Portal
+            - generic [ref=e66]: ROOM 08
+        - button "LOCKED The Quantum Mirage ROOM 09" [ref=e67] [cursor=pointer]:
+          - generic [ref=e68]:
+            - generic [ref=e69]: LOCKED
+            - generic [ref=e70]: The Quantum Mirage
+            - generic [ref=e71]: ROOM 09
+      - link "VIEW ALL TEAM PROGRESS" [ref=e73] [cursor=pointer]:
+        - /url: /leaderboard
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - heading "SHARED LEADERBOARD" [level=2] [ref=e76]
+          - generic [ref=e83]: 4 TEAMS
+        - table [ref=e85]:
+          - rowgroup [ref=e86]:
+            - row [ref=e87]:
+              - columnheader "RANK" [ref=e88]
+              - columnheader "TEAM" [ref=e89]
+              - columnheader "PROGRESS" [ref=e90]
+          - rowgroup [ref=e91]:
+            - row [ref=e92]:
+              - cell "01" [ref=e93]
+              - cell [ref=e94]:
+                - strong [ref=e95]: erroris
+              - cell "9/9 9" [ref=e96]:
+                - generic [ref=e97]: 9/9
+                - progressbar "erroris progress" [ref=e98]
+            - row [ref=e99]:
+              - cell "02" [ref=e100]
+              - cell [ref=e101]:
+                - strong [ref=e102]: Session repair check 20261011
+              - cell "1/9 1" [ref=e103]:
+                - generic [ref=e104]: 1/9
+                - progressbar "Session repair check 20261011 progress" [ref=e105]
+            - row [ref=e106]:
+              - cell "03" [ref=e107]
+              - cell [ref=e108]:
+                - strong [ref=e109]: Embedded repair check 20261011
+              - cell "1/9 1" [ref=e110]:
+                - generic [ref=e111]: 1/9
+                - progressbar "Embedded repair check 20261011 progress" [ref=e112]
+            - row [ref=e113]:
+              - cell "04" [ref=e114]
+              - cell [ref=e115]:
+                - strong [ref=e116]: erroris
+              - cell "0/9 0" [ref=e117]:
+                - generic [ref=e118]: 0/9
+                - progressbar "erroris progress" [ref=e119]
+    - dialog [ref=e121]:
+      - heading "TEAM REGISTRATION" [level=2] [ref=e128]
+      - generic [ref=e132]:
+        - paragraph [ref=e133]: "> Welcome to Mystrix"
+        - paragraph [ref=e134]: "> Enter your team name to begin"
+        - paragraph [ref=e135]: "> Your progress will be tracked automatically"
+      - generic [ref=e136]:
+        - generic [ref=e137]: "> TEAM NAME"
+        - textbox "> TEAM NAME" [active] [ref=e138]:
+          - /placeholder: Enter your team name...
+        - generic [ref=e139]: 0/50 characters
+        - button "CONNECTING..." [disabled]
+      - generic [ref=e140]: Your progress appears on the shared leaderboard
+  - complementary "Edit with Lovable" [ref=e141]:
+    - link "Edit with Lovable" [ref=e142] [cursor=pointer]:
+      - /url: https://lovable.dev/projects/lovp_121b99exp994m917nxcngr28py?utm_source=lovable-badge
+      - generic [ref=e143]: Edit with
+    - button "Dismiss" [ref=e150] [cursor=pointer]
