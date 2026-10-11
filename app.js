@@ -106,164 +106,9 @@ export const ROOMS_DATA = [
   }
 ];
 
-// 10 Benchmark Rival Teams for Simultaneous Multi-Team Competition
-export const DEFAULT_RIVAL_TEAMS = [
-  {
-    id: 'team-byte-bandits',
-    name: 'ByteBandits',
-    lead: 'Rohan Verma',
-    member: 'Priya Nair',
-    completed_count: 8,
-    created_at: new Date(Date.now() - 5400000).toISOString(),
-    last_completed_at: new Date(Date.now() - 420000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 5000000).toISOString() },
-      { room_id: 2, completed_at: new Date(Date.now() - 4400000).toISOString() },
-      { room_id: 3, completed_at: new Date(Date.now() - 3800000).toISOString() },
-      { room_id: 4, completed_at: new Date(Date.now() - 3100000).toISOString() },
-      { room_id: 5, completed_at: new Date(Date.now() - 2400000).toISOString() },
-      { room_id: 6, completed_at: new Date(Date.now() - 1700000).toISOString() },
-      { room_id: 7, completed_at: new Date(Date.now() - 1000000).toISOString() },
-      { room_id: 8, completed_at: new Date(Date.now() - 420000).toISOString() }
-    ]
-  },
-  {
-    id: 'team-quantum-phantoms',
-    name: 'QuantumPhantoms',
-    lead: 'Aarav Sharma',
-    member: 'Sneha Patel',
-    completed_count: 7,
-    created_at: new Date(Date.now() - 6000000).toISOString(),
-    last_completed_at: new Date(Date.now() - 680000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 5500000).toISOString() },
-      { room_id: 2, completed_at: new Date(Date.now() - 4800000).toISOString() },
-      { room_id: 3, completed_at: new Date(Date.now() - 4100000).toISOString() },
-      { room_id: 4, completed_at: new Date(Date.now() - 3300000).toISOString() },
-      { room_id: 5, completed_at: new Date(Date.now() - 2500000).toISOString() },
-      { room_id: 6, completed_at: new Date(Date.now() - 1600000).toISOString() },
-      { room_id: 7, completed_at: new Date(Date.now() - 680000).toISOString() }
-    ]
-  },
-  {
-    id: 'team-ciphersquad',
-    name: 'CipherSquad_Alpha',
-    lead: 'Devansh Roy',
-    member: 'Meera Iyer',
-    completed_count: 6,
-    created_at: new Date(Date.now() - 6600000).toISOString(),
-    last_completed_at: new Date(Date.now() - 950000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 6100000).toISOString() },
-      { room_id: 2, completed_at: new Date(Date.now() - 5200000).toISOString() },
-      { room_id: 3, completed_at: new Date(Date.now() - 4300000).toISOString() },
-      { room_id: 4, completed_at: new Date(Date.now() - 3400000).toISOString() },
-      { room_id: 5, completed_at: new Date(Date.now() - 2200000).toISOString() },
-      { room_id: 6, completed_at: new Date(Date.now() - 950000).toISOString() }
-    ]
-  },
-  {
-    id: 'team-kernel-panic',
-    name: 'KernelPanic',
-    lead: 'Aditya Menon',
-    member: 'Ananya Das',
-    completed_count: 5,
-    created_at: new Date(Date.now() - 7200000).toISOString(),
-    last_completed_at: new Date(Date.now() - 1200000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 6800000).toISOString() },
-      { room_id: 2, completed_at: new Date(Date.now() - 5600000).toISOString() },
-      { room_id: 3, completed_at: new Date(Date.now() - 4400000).toISOString() },
-      { room_id: 4, completed_at: new Date(Date.now() - 3100000).toISOString() },
-      { room_id: 7, completed_at: new Date(Date.now() - 1200000).toISOString() }
-    ]
-  },
-  {
-    id: 'team-glitch-hunters',
-    name: 'GlitchHunters',
-    lead: 'Kabir Singh',
-    member: 'Diya Sengupta',
-    completed_count: 5,
-    created_at: new Date(Date.now() - 7000000).toISOString(),
-    last_completed_at: new Date(Date.now() - 1100000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 6400000).toISOString() },
-      { room_id: 2, completed_at: new Date(Date.now() - 5100000).toISOString() },
-      { room_id: 3, completed_at: new Date(Date.now() - 3900000).toISOString() },
-      { room_id: 4, completed_at: new Date(Date.now() - 2800000).toISOString() },
-      { room_id: 5, completed_at: new Date(Date.now() - 1100000).toISOString() }
-    ]
-  },
-  {
-    id: 'team-null-pointers',
-    name: 'NullPointers',
-    lead: 'Tarun Joshi',
-    member: 'Ishita Paul',
-    completed_count: 4,
-    created_at: new Date(Date.now() - 7800000).toISOString(),
-    last_completed_at: new Date(Date.now() - 1500000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 7100000).toISOString() },
-      { room_id: 2, completed_at: new Date(Date.now() - 5800000).toISOString() },
-      { room_id: 3, completed_at: new Date(Date.now() - 4200000).toISOString() },
-      { room_id: 4, completed_at: new Date(Date.now() - 1500000).toISOString() }
-    ]
-  },
-  {
-    id: 'team-neon-shadows',
-    name: 'NeonShadows',
-    lead: 'Siddharth Rao',
-    member: 'Tanvi Deshmukh',
-    completed_count: 4,
-    created_at: new Date(Date.now() - 8000000).toISOString(),
-    last_completed_at: new Date(Date.now() - 1400000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 7400000).toISOString() },
-      { room_id: 2, completed_at: new Date(Date.now() - 6000000).toISOString() },
-      { room_id: 3, completed_at: new Date(Date.now() - 4500000).toISOString() },
-      { room_id: 5, completed_at: new Date(Date.now() - 1400000).toISOString() }
-    ]
-  },
-  {
-    id: 'team-vortex-runners',
-    name: 'VortexRunners',
-    lead: 'Farhan Khan',
-    member: 'Kavya Kulkarni',
-    completed_count: 3,
-    created_at: new Date(Date.now() - 8400000).toISOString(),
-    last_completed_at: new Date(Date.now() - 1900000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 7800000).toISOString() },
-      { room_id: 2, completed_at: new Date(Date.now() - 6200000).toISOString() },
-      { room_id: 3, completed_at: new Date(Date.now() - 1900000).toISOString() }
-    ]
-  },
-  {
-    id: 'team-zeroday-knights',
-    name: 'ZeroDayKnights',
-    lead: 'Arjun Malhotra',
-    member: 'Riya Kapoor',
-    completed_count: 2,
-    created_at: new Date(Date.now() - 9000000).toISOString(),
-    last_completed_at: new Date(Date.now() - 2500000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 8200000).toISOString() },
-      { room_id: 2, completed_at: new Date(Date.now() - 2500000).toISOString() }
-    ]
-  },
-  {
-    id: 'team-binary-drifters',
-    name: 'BinaryDrifters',
-    lead: 'Nikhil Reddy',
-    member: 'Simran Kaur',
-    completed_count: 1,
-    created_at: new Date(Date.now() - 9600000).toISOString(),
-    last_completed_at: new Date(Date.now() - 3200000).toISOString(),
-    completions: [
-      { room_id: 1, completed_at: new Date(Date.now() - 3200000).toISOString() }
-    ]
-  }
-];
+// Initial Rival Teams for the Shared Leaderboard (Empty by default)
+export const DEFAULT_RIVAL_TEAMS = [];
+
 
 // Audio FX Synthesizer via Web Audio API
 class CyberAudio {
@@ -407,7 +252,6 @@ class MystrixApp {
     this.renderRoomGrid();
     this.updateProgressUI();
     this.renderLeaderboards();
-    this.startLiveTournamentSimulation();
 
     if (!this.currentTeam) {
       this.openRegistrationModal();
@@ -416,31 +260,9 @@ class MystrixApp {
     }
   }
 
-  // Live Simultaneous Multi-Team Progression Loop
+  // Live Simultaneous Multi-Team Progression Loop (Deactivated)
   startLiveTournamentSimulation() {
     if (this.simulationInterval) clearInterval(this.simulationInterval);
-    this.simulationInterval = setInterval(() => {
-      if (!this.rivalTeams || this.rivalTeams.length === 0) return;
-
-      // Pick an eligible rival team that hasn't completed all 9 rooms
-      const eligibleTeams = this.rivalTeams.filter((t) => (t.completed_count || 0) < 9);
-      if (eligibleTeams.length === 0) return;
-
-      const randomTeam = eligibleTeams[Math.floor(Math.random() * eligibleTeams.length)];
-      const solvedIds = (randomTeam.completions || []).map((c) => c.room_id);
-      const remainingRoomIds = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter((id) => !solvedIds.includes(id));
-      if (remainingRoomIds.length === 0) return;
-
-      const nextRoomId = remainingRoomIds[0];
-      const now = new Date().toISOString();
-      randomTeam.completions.push({ room_id: nextRoomId, completed_at: now });
-      randomTeam.completed_count = randomTeam.completions.length;
-      randomTeam.last_completed_at = now;
-
-      // Persist & instantly update scores and rankings
-      this.saveState();
-      this.renderLeaderboards();
-    }, 18000);
   }
 
   // State Persistence
@@ -460,14 +282,24 @@ class MystrixApp {
 
       const savedRivals = localStorage.getItem('mystrix_rival_teams');
       if (savedRivals) {
-        this.rivalTeams = JSON.parse(savedRivals);
+        try {
+          const parsed = JSON.parse(savedRivals);
+          const hasOldMocks = Array.isArray(parsed) && parsed.some(t => t.name === 'ByteBandits' || t.name === 'QuantumPhantoms' || t.name === 'CipherSquad_Alpha');
+          if (hasOldMocks) {
+            this.rivalTeams = [];
+            localStorage.removeItem('mystrix_rival_teams');
+          } else {
+            this.rivalTeams = parsed;
+          }
+        } catch (_) {
+          this.rivalTeams = [];
+        }
       } else {
-        this.rivalTeams = DEFAULT_RIVAL_TEAMS;
-        localStorage.setItem('mystrix_rival_teams', JSON.stringify(this.rivalTeams));
+        this.rivalTeams = [];
       }
     } catch (e) {
       console.warn('Failed to load local storage:', e);
-      this.rivalTeams = DEFAULT_RIVAL_TEAMS;
+      this.rivalTeams = [];
     }
   }
 
