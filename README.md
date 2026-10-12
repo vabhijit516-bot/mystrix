@@ -55,10 +55,52 @@
 ## 🛠️ Tech Stack
 
 - **Frontend**: Vanilla JavaScript (ES6+), HTML5 Semantic Elements, Modern CSS3 custom properties & glassmorphism.
+- **Database & Realtime**: [Supabase](https://supabase.com) Postgres database with Supabase Realtime WebSocket subscriptions for multiplayer synchronization.
 - **Audio**: Web Audio API (real-time procedural oscillator synthesis).
 - **Visuals**: Canvas 2D Matrix Rain animation engine.
-- **Bundler & Tooling**: Vite 5.
+- **Bundler & Tooling**: Vite 6.
 - **Deployment**: Vercel CI/CD.
+
+---
+
+## 🗄️ Supabase Database Setup & Schema
+
+Mystrix automatically synchronizes team registrations, progress, and room solve timestamps across all players in real-time.
+
+### Database Credentials Configured:
+- **Project URL**: `https://lzyjfndmzsxtxwbhvlhb.supabase.co`
+- **Dashboard**: `https://supabase.com/dashboard/project/lzyjfndmzsxtxwbhvlhb`
+- **Table Name**: `public.teams`
+
+### 1-Click SQL Setup:
+Run the script in [`supabase_schema.sql`](./supabase_schema.sql) in your [Supabase SQL Editor](https://supabase.com/dashboard/project/lzyjfndmzsxtxwbhvlhb/sql/new):
+
+```sql
+CREATE TABLE IF NOT EXISTS public.teams (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  lead TEXT DEFAULT '',
+  member TEXT DEFAULT '',
+  completed_count INTEGER DEFAULT 0,
+  score INTEGER DEFAULT 0,
+  last_completed_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  room_completions JSONB DEFAULT '{}'::jsonb,
+  completions JSONB DEFAULT '[]'::jsonb
+);
+
+CREATE INDEX IF NOT EXISTS idx_teams_leaderboard 
+  ON public.teams (completed_count DESC, last_completed_at ASC);
+
+ALTER TABLE public.teams ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read access" ON public.teams FOR SELECT USING (true);
+CREATE POLICY "Allow public insert access" ON public.teams FOR INSERT WITH CHECK (true);
+CREATE POLICY "Allow public update access" ON public.teams FOR UPDATE USING (true);
+CREATE POLICY "Allow public delete access" ON public.teams FOR DELETE USING (true);
+
+ALTER PUBLICATION supabase_realtime ADD TABLE public.teams;
+```
 
 ---
 

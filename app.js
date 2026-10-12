@@ -3,6 +3,15 @@
  * Full Cyberpunk Puzzle Simulation with Matrix Rain, Sound FX, & Shared Leaderboard
  */
 
+import {
+  checkSupabaseStatus,
+  fetchAllTeams,
+  syncTeamToSupabase,
+  clearAllTeamsFromSupabase,
+  subscribeToLeaderboard,
+  SUPABASE_SCHEMA_SQL
+} from './supabase.js';
+
 // 1. Room Puzzle Data & Answers
 export const ROOMS_DATA = [
   {
@@ -242,6 +251,17 @@ class MystrixApp {
     this.audioToggleBtn = document.getElementById('audio-toggle-btn');
     this.audioStatus = document.getElementById('audio-status');
 
+    // Supabase Live Synchronization & Elements
+    this.supabaseStatusBadge = document.getElementById('supabase-status-badge');
+    this.supabaseStatusText = document.getElementById('supabase-status-text');
+    this.liveToastContainer = document.getElementById('live-toast-container');
+    this.sqlSetupModal = document.getElementById('sql-setup-modal');
+    this.closeSqlModalBtn = document.getElementById('close-sql-modal-btn');
+    this.copySqlBtn = document.getElementById('copy-sql-btn');
+    this.testSupabaseBtn = document.getElementById('test-supabase-btn');
+    this.supabasePollInterval = null;
+    this.isSupabaseConnected = false;
+
     this.init();
   }
 
@@ -258,11 +278,183 @@ class MystrixApp {
     } else {
       this.updateTeamBanner();
     }
+
+    // Initialize Supabase realtime database integration
+    this.initSupabaseIntegration();
   }
 
-  // Live Simultaneous Multi-Team Progression Loop (Deactivated)
-  startLiveTournamentSimulation() {
-    if (this.simulationInterval) clearInterval(this.simulationInterval);
+  // Supabase Real-Time Integration & Toasts
+  showCyberToast(title, body, highlight = false) {
+    if (!this.liveToastContainer) return;
+    const toast = document.createElement('div');
+    toast.className = `cyber-toast ${highlight ? 'highlight' : ''}`;
+    toast.innerHTML = `
+      <div class="cyber-toast-content">
+        <div class="cyber-toast-title">${title}</div>
+        <div class="cyber-toast-body">${body}</div>
+      </div>
+    `;
+    this.liveToastContainer.appendChild(toast);
+
+    audio.beep(highlight ? 880 : 540, 0.08, 'sine');
+
+    setTimeout(() => {
+      toast.classList.add('toast-fadeout');
+      setTimeout(() => toast.remove(), 400);
+    }, 4500);
+  }
+
+  updateSupabaseStatusUI(state, text) {
+    if (!this.supabaseStatusBadge || !this.supabaseStatusText) return;
+    this.supabaseStatusBadge.className = `supabase-status-badge ${state}`;
+    this.supabaseStatusText.textContent = text;
+  }
+
+  openSqlSetupModal() {
+    if (!this.sqlSetupModal) return;
+    this.relayContent?.classList.add('blurred');
+    this.sqlSetupModal.style.display = 'flex';
+  }
+
+  closeSqlSetupModal() {
+    if (!this.sqlSetupModal) return;
+    this.relayContent?.classList.remove('blurred');
+    this.sqlSetupModal.style.display = 'none';
+  }
+
+  getCurrentTeamRecord() {
+    if (!this.currentTeam) return null;
+    const solvedTimes = Object.values(this.roomCompletions).sort();
+    const lastSolved = solvedTimes.length ? solvedTimes[solvedTimes.length - 1] : null;
+    return {
+      id: this.currentTeam.id,
+      name: this.currentTeam.name,
+      lead: this.currentTeam.lead || '—',
+      member: this.currentTeam.member || '—',
+      completed_count: this.unlockedRooms.length,
+      score: this.unlockedRooms.length * 100,
+      last_completed_at: lastSolved,
+      created_at: this.currentTeam.created_at,
+      room_completions: this.roomCompletions,
+      completions: this.unlockedRooms.map((id) => ({
+        room_id: id,
+        completed_at: this.roomCompletions[id] || new Date().toISOString()
+      }))
+    };
+  }
+
+  async initSupabaseIntegration() {
+    this.updateSupabaseStatusUI('connecting', 'SUPABASE: CONNECTING...');
+
+    await this.refreshSupabaseState(true);
+
+    // Setup Realtime Live Channel
+    try {
+      subscribeToLeaderboard((payload) => {
+        this.handleSupabaseRealtime(payload);
+      });
+    } catch (err) {
+      console.warn('[Supabase Realtime] Init error:', err);
+    }
+
+    // Backup polling loop every 8s
+    if (this.supabasePollInterval) clearInterval(this.supabasePollInterval);
+    this.supabasePollInterval = setInterval(() => {
+      this.refreshSupabaseState(false);
+    }, 8000);
+  }
+
+  async refreshSupabaseState(isInitial = false) {
+    const status = await checkSupabaseStatus();
+
+    if (!status.available) {
+      this.isSupabaseConnected = false;
+      this.updateSupabaseStatusUI('error', 'SUPABASE: SETUP SCHEMA (CLICK)');
+      if (isInitial) {
+        console.info('[Supabase] Teams table not found yet. Click the badge to run setup SQL.');
+      }
+      return;
+    }
+
+    this.isSupabaseConnected = true;
+    this.updateSupabaseStatusUI('live', 'SUPABASE: LIVE SYNC');
+
+    // Fetch latest teams
+    const { success, data: remoteTeams } = await fetchAllTeams();
+    if (success && Array.isArray(remoteTeams)) {
+      this.mergeRemoteTeams(remoteTeams);
+    }
+
+    // Sync current team up if exists
+    if (this.currentTeam) {
+      await syncTeamToSupabase(this.getCurrentTeamRecord());
+    }
+  }
+
+  mergeRemoteTeams(remoteTeams) {
+    const prevMap = new Map(this.rivalTeams.map((t) => [t.id, t]));
+    const currentId = this.currentTeam?.id;
+
+    // Filter out user's current team from rivals
+    const otherTeams = remoteTeams.filter((t) => t.id !== currentId);
+
+    // Check for newly discovered teams during polling
+    otherTeams.forEach((team) => {
+      if (!prevMap.has(team.id) && this.rivalTeams.length > 0) {
+        this.showCyberToast(
+          'NEW CONTENDER DETECTED',
+          `Team "${team.name}" (Lead: ${team.lead || '—'}) entered the leaderboard!`
+        );
+      }
+    });
+
+    this.rivalTeams = otherTeams;
+    this.renderLeaderboards();
+  }
+
+  handleSupabaseRealtime(payload) {
+    const { eventType, new: newRecord, old: oldRecord } = payload;
+    const currentId = this.currentTeam?.id;
+
+    if (eventType === 'INSERT') {
+      if (newRecord.id !== currentId) {
+        const exists = this.rivalTeams.some((t) => t.id === newRecord.id);
+        if (!exists) {
+          this.rivalTeams.push(newRecord);
+          this.showCyberToast(
+            'NEW CONTENDER ONLINE',
+            `Team "${newRecord.name}" (Lead: ${newRecord.lead || '—'}, Member: ${newRecord.member || '—'}) joined!`,
+            true
+          );
+          this.renderLeaderboards();
+        }
+      }
+    } else if (eventType === 'UPDATE') {
+      if (newRecord.id !== currentId) {
+        const idx = this.rivalTeams.findIndex((t) => t.id === newRecord.id);
+        const oldTeam = idx !== -1 ? this.rivalTeams[idx] : null;
+
+        if (oldTeam && newRecord.completed_count > (oldTeam.completed_count || 0)) {
+          this.showCyberToast(
+            'RIVAL CHAMBER CRACKED!',
+            `Team "${newRecord.name}" solved ${newRecord.completed_count}/9 chambers!`,
+            true
+          );
+        }
+
+        if (idx !== -1) {
+          this.rivalTeams[idx] = newRecord;
+        } else {
+          this.rivalTeams.push(newRecord);
+        }
+        this.renderLeaderboards();
+      }
+    } else if (eventType === 'DELETE') {
+      if (oldRecord) {
+        this.rivalTeams = this.rivalTeams.filter((t) => t.id !== oldRecord.id);
+        this.renderLeaderboards();
+      }
+    }
   }
 
   // State Persistence
@@ -444,10 +636,57 @@ class MystrixApp {
       if (e.target === this.leaderboardOverlay) this.closeLeaderboardModal();
     });
 
+    // Supabase Status Badge and SQL Modal listeners
+    this.supabaseStatusBadge?.addEventListener('click', () => {
+      this.openSqlSetupModal();
+    });
+
+    this.closeSqlModalBtn?.addEventListener('click', () => {
+      this.closeSqlSetupModal();
+    });
+
+    this.sqlSetupModal?.addEventListener('click', (e) => {
+      if (e.target === this.sqlSetupModal) this.closeSqlSetupModal();
+    });
+
+    this.copySqlBtn?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(SUPABASE_SCHEMA_SQL);
+        this.copySqlBtn.textContent = 'COPIED TO CLIPBOARD ✓';
+        audio.beep(880, 0.1);
+        setTimeout(() => {
+          this.copySqlBtn.textContent = 'COPY SQL QUERY';
+        }, 2000);
+      } catch (_) {
+        alert('Please copy the SQL query from the code box.');
+      }
+    });
+
+    this.testSupabaseBtn?.addEventListener('click', async () => {
+      this.testSupabaseBtn.textContent = 'CHECKING...';
+      await this.refreshSupabaseState(true);
+      if (this.isSupabaseConnected) {
+        this.testSupabaseBtn.textContent = 'SUCCESS! TABLE READY ✓';
+        audio.successChime();
+        setTimeout(() => {
+          this.closeSqlSetupModal();
+          this.testSupabaseBtn.textContent = 'CHECK STATUS';
+        }, 1200);
+      } else {
+        this.testSupabaseBtn.textContent = 'NOT FOUND YET';
+        audio.deniedBuzz();
+        setTimeout(() => {
+          this.testSupabaseBtn.textContent = 'CHECK STATUS';
+        }, 1500);
+      }
+    });
+
     // Global keyboard navigation
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (this.checkpointOverlay.style.display !== 'none') {
+        if (this.sqlSetupModal && this.sqlSetupModal.style.display !== 'none') {
+          this.closeSqlSetupModal();
+        } else if (this.checkpointOverlay.style.display !== 'none') {
           this.closeCheckpointModal();
         } else if (this.leaderboardOverlay.style.display !== 'none') {
           this.closeLeaderboardModal();
@@ -509,6 +748,9 @@ class MystrixApp {
       this.unlockedRooms = [];
       this.roomCompletions = {};
       this.saveState();
+
+      // Store team registration in Supabase database
+      syncTeamToSupabase(this.getCurrentTeamRecord());
 
       audio.successChime();
       this.closeRegistrationModal();
@@ -657,6 +899,9 @@ class MystrixApp {
         this.roomCompletions[room.id] = new Date().toISOString();
         this.saveState();
 
+        // Sync score and completion timings to Supabase
+        syncTeamToSupabase(this.getCurrentTeamRecord());
+
         this.checkpointStatusText.textContent = 'CHAMBER UNLOCKED';
         this.accessKeyInput.disabled = true;
         this.checkpointAuthBtn.disabled = true;
@@ -721,6 +966,9 @@ class MystrixApp {
     this.unlockedRooms = [];
     this.roomCompletions = {};
     localStorage.removeItem('mystrix_team_progress');
+
+    // Clear remote Supabase database for all players
+    clearAllTeamsFromSupabase();
 
     this.saveState();
     this.updateProgressUI();
@@ -787,38 +1035,42 @@ class MystrixApp {
 
   // 9. Shared Leaderboards Rendering
   getSortedLeaderboard() {
-    const list = [...this.rivalTeams];
+    const list = this.rivalTeams.map((t) => ({
+      ...t,
+      completed_count: Number(t.completed_count || 0),
+      completions: Array.isArray(t.completions)
+        ? t.completions
+        : (t.room_completions && typeof t.room_completions === 'object'
+            ? Object.entries(t.room_completions).map(([rid, dt]) => ({ room_id: Number(rid), completed_at: dt }))
+            : []),
+      isCurrentTeam: false
+    }));
 
     if (this.currentTeam) {
-      // Find latest solved time
-      const solvedTimes = Object.values(this.roomCompletions).sort();
-      const lastSolved = solvedTimes.length ? solvedTimes[solvedTimes.length - 1] : null;
-
+      const record = this.getCurrentTeamRecord();
       const userTeamEntry = {
-        id: this.currentTeam.id,
-        name: this.currentTeam.name,
-        lead: this.currentTeam.lead || '—',
-        member: this.currentTeam.member || '—',
-        completed_count: this.unlockedRooms.length,
-        created_at: this.currentTeam.created_at,
-        last_completed_at: lastSolved,
-        completions: this.unlockedRooms.map((id) => ({
-          room_id: id,
-          completed_at: this.roomCompletions[id] || new Date().toISOString()
-        })),
+        ...record,
         isCurrentTeam: true
       };
-      list.push(userTeamEntry);
+      // Ensure no duplicate if current team is also in rival list
+      const filtered = list.filter((t) => t.id !== this.currentTeam.id);
+      filtered.push(userTeamEntry);
+      list.length = 0;
+      list.push(...filtered);
     }
 
     // Sort: most completed rooms first; if tied, earliest last_completed_at wins
     list.sort((a, b) => {
-      if (b.completed_count !== a.completed_count) {
-        return b.completed_count - a.completed_count;
+      const aCount = Number(a.completed_count || 0);
+      const bCount = Number(b.completed_count || 0);
+      if (bCount !== aCount) {
+        return bCount - aCount;
       }
       if (a.last_completed_at && b.last_completed_at) {
         return new Date(a.last_completed_at) - new Date(b.last_completed_at);
       }
+      if (a.last_completed_at && !b.last_completed_at) return -1;
+      if (!a.last_completed_at && b.last_completed_at) return 1;
       return 0;
     });
 
